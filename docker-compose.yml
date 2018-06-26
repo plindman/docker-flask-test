@@ -16,10 +16,8 @@ services:
     - "5000:5000"
     networks:
       - backend
-    volumes:
-    - .:/app
     depends_on:
-        - database
+      - database
         
 networks:  
   backend:
