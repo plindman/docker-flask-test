@@ -10,7 +10,17 @@ services:
       - mongo-data:/data/db
       - ./mongo/scripts:/scripts
       - ./mongo/data:/data
-
+  web:
+    build: ./web
+    ports:
+    - "5000:5000"
+    networks:
+      - backend
+    volumes:
+    - .:/app
+    depends_on:
+        - database
+        
 networks:  
   backend:
     driver: bridge
