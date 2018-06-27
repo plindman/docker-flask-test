@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:  
   database:
@@ -10,10 +10,14 @@ services:
       - mongo-data:/data/db
       - ./mongo/scripts:/scripts
       - ./mongo/data:/data
-  web:
+  flask:
     build: ./web
     ports:
-    - "5000:5000"
+    - "${FLASK_PORT}:${FLASK_PORT}"
+    environment:
+    - GUNICORN_CMD_ARGS=${GUNICORN_CMD_ARGS}
+    volumes:
+    - ./web:/web
     networks:
       - backend
     depends_on:

@@ -8,4 +8,5 @@ FROM base
 COPY --from=builder /install /usr/local
 COPY . /app
 WORKDIR /app
-CMD ["gunicorn", "-w 4", "-b 0.0.0.0:5000", "app:app"]
+# ENV GUNICORN_CMD_ARGS="--bind=0.0.0.0:5000 --workers=4"
+CMD ["gunicorn", "app:app"]
