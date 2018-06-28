@@ -14,5 +14,6 @@ COPY --from=builder /web/app.egg-info/ /web/app.egg-info/
 # app files linked via volumes
 WORKDIR /web
 # CMD ["flask", "run"]
-ENV GUNICORN_CMD_ARGS="--bind=0.0.0.0:5000 --workers=4 --reload"
+ARG GUNICORN_CMD_ARGS="--bind=0.0.0.0:5000 --workers=4 --reload"
+ENV GUNICORN_CMD_ARGS=$GUNICORN_CMD_ARGS
 CMD ["gunicorn", "app:app"]
